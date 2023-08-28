@@ -7,6 +7,7 @@ public:
             if (i*i >= n) {
                 if (i*i == n) sq = i;
                 else sq = i - 1;
+                break;
             }
         }
 
@@ -18,7 +19,7 @@ public:
                 else cnt = cnt + 2;
             }
         }
-        
+
         bool ans = (cnt == 3);
 
         return ans;
