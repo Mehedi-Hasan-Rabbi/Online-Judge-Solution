@@ -1,0 +1,114 @@
+// In the name of Allah the merciful.
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+
+#define endl               '\n'
+#define yes                cout << "YES" << endl
+#define no                 cout << "NO" << endl
+#define show(x)            cout << #x << " : " << x << endl
+#define showtwo(x, y)      cout << #x << " : " << x << " " << #y << " : " << y << endl
+#define all(a)             a.begin(),a.end()
+#define pb                 push_back
+#define pf                 push_front
+#define mp                 make_pair
+#define ff                 first
+#define ss                 second
+#define input_arr(vec)     for(auto &&it:vec) {cin >> it;}
+#define display_arr(vec)   for (auto &&it : vec){cout << it << " ";} cout << endl;
+#define files              freopen("input.txt", "r", stdin); freopen("output.txt", "w", stdout);
+#define efficient()        ios_base::sync_with_stdio(0); cin.tie(0);
+#define fraction()         cout.unsetf(ios::floatfield); cout.precision(10); cout.setf(ios::fixed,ios::floatfield);
+
+ll gcd ( ll a, ll b ) { return __gcd ( a, b ); }
+ll lcm ( ll a, ll b ) { return abs(a) * ( abs(b) / gcd ( a, b ) ); }
+
+const ll MOD = 1e9 + 7; // 1000000007;
+const double PI = acos(-1);
+
+/*---------------------------------------------------------------------------------------------------------------*/
+
+void solve()
+{
+    int n; cin >> n;
+    vi bin(n);
+    int tot = 0;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> bin[i];
+        if (bin[i] == 0) tot++;
+    }
+
+    // Calculating without invertion
+    ll count = 0;
+    int curr = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (bin[i] == 0) curr++;
+        else count += (ll) (tot - curr);
+    }
+
+    // Making the first 0 --> 1
+    vi test = bin;
+    ll count_1 = 0;
+    int zero = tot;
+    for (int i = 0; i < n; i++)
+    {
+        if (test[i] == 0) {
+            test[i] = 1;
+            zero--;
+            break;
+        }
+    }
+    
+    curr = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (test[i] == 0) curr++;
+        else count_1 += (ll) (zero - curr);
+    }
+
+    // Making the last 1 --> 0
+    test = bin;
+    ll count_2 = 0;
+    zero = tot;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        if (test[i] == 1) {
+            test[i] = 0;
+            zero++;
+            break;
+        }
+    }
+    
+    curr = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (test[i] == 0) curr++;
+        else count_2 += (ll) (zero - curr);
+    }
+    
+
+    ll ans = max(count, max(count_1, count_2));
+    cout << ans << endl;
+}
+
+int main(void)
+{
+    //efficient();
+
+    int t = 1;
+    cin >> t;
+    for (int tc = 1; tc <= t; tc++)
+    {
+        // cout << "Case " << tc << ": ";
+        solve();
+    }
+    return 0;
+}
