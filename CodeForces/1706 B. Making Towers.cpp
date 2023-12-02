@@ -37,17 +37,38 @@ const double PI = acos(-1);
 void solve()
 {
     int n; cin >> n;
-    string s; cin >> s;
-    string ans; ans = s;
+    vector<pii> a;
+    
+    for (int i = 0; i < n; i++)
+    {
+        int x; cin >> x;
+        a.push_back({x, i + 1});
+    }
+    sort(all(a));
+    map<int, int> ans;
 
+    int tower = 1;
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i].first == a[i + 1].first and i + 1 < n) {
+            int diff = abs(a[i].ss - a[i + 1].ss) - 1;
+            if (diff % 2 == 0) tower++;
+        }
+        else {
+            ans[a[i].first] = tower;
+            tower = 1;
+        }
+    }
     
-    
-    
+    for (int i = 1; i <= n; i++)
+        cout << ans[i] << " ";
+    cout << endl;
+
 }
 
 int main(void)
 {
-    //efficient();
+    efficient();
 
     int t = 1;
     cin >> t;
