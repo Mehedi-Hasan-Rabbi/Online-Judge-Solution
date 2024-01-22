@@ -135,7 +135,7 @@ or, ( ( count * (count - 1) ) / 2 ) * smallCount;
 Here, count = number of ways we can take the first side;
       count - 1 = number of ways we can take the second side;
 
-      we, divide it by 2 because every side is taken 6 times;
+      we, divide it by 2 because every side is taken 2 times;
       example of ab: ab, ba are all same.
 
       smallCount = total number of small numbers that are below that frequency of a number
