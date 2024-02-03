@@ -50,6 +50,7 @@ long long a[mx];
 long long pref[mx];
 long long cnt[mx];
 
+// Another way to solve the problem is given billow
 void solve()
 {
     int n, m; cin >> n >> m;
@@ -87,3 +88,26 @@ int main(void)
     // cerr << "Run Time : " << ((double)(clock() - z) / CLOCKS_PER_SEC); // the run time printed here is in seconds
     return 0;
 }
+
+// void solve()
+// {
+//     int n, m; cin >> n >> m;
+//     mem(cnt, 0);
+
+//     for (int i = 1; i <= n; i++) cin >> a[i];
+//     for (int i = 1; i <= n; i++) pref[i] = a[i] + pref[i - 1];
+//     for (int i = 1; i <= n; i++) pref[i] = pref[i] % m;
+
+//     cnt[0]++; // Index 0 = 0; we have to calculate it for the Segment
+//     ll MX = 0;
+//     for (int i = 1; i <= n; i++) {
+//         cnt[ pref[i] ]++;
+//         MX = max(MX, pref[i]);
+//     }
+
+//     long long ans = 0ll;
+//     for (int i = 0; i <= MX; i++)
+//         ans += (( cnt[i] * (cnt[i] - 1) ) / 2);
+    
+//     cout << ans << endl;
+// }
