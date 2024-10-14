@@ -59,3 +59,38 @@ int main(void) {
     cout << calc(1, 0) << endl;
     return 0;
 }
+
+// Iterative Approach
+// const int mx = 1e5 + 123;
+// ll dp1[mx], dp2[mx], dp3[mx];
+
+// void solve()
+// {
+//     memset(dp1, -1, sizeof(dp1));
+//     memset(dp2, -1, sizeof(dp2));
+//     memset(dp3, -1, sizeof(dp3));
+
+//     int n; cin >> n;
+//     vector<ll> a(n + 1, 0), b(n + 1, 0), c(n + 1, 0);
+
+//     for (int i = 1; i <= n; i++)
+//         cin >> a[i] >> b[i] >> c[i];
+
+//     dp1[n] = a[n], dp2[n] = b[n], dp3[n] = c[n];
+//     for (int i = n - 1; i >= 1; i--)
+//     {
+//         // if select a[i]
+//         ll max_hap1 = max(dp2[i + 1] + a[i], dp3[i + 1] + a[i]);
+//         dp1[i] = max_hap1;
+
+//         // if select b[i]
+//         ll max_hap2 = max(dp1[i + 1] + b[i], dp3[i + 1] + b[i]);
+//         dp2[i] = max_hap2;
+
+//         // if select c[i]
+//         ll max_hap3 = max(dp1[i + 1] + c[i], dp2[i + 1] + c[i]);
+//         dp3[i] = max_hap3;
+//     }   
+//     cout << max({dp1[1], dp2[1], dp3[1]}) << endl;
+
+// }
