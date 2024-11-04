@@ -27,12 +27,6 @@ const double eps = 1e-9; // if (abs(a-b) < 1e-9) {a and b are equal}
 
 /*---------------------------------------------------------------------------------------------------------------*/
 
-// for (auto [key, val]: freq) {
-//         cout << key << ": " << endl;
-//         for (auto u: val) cout << u << " ";
-//         cout << endl;
-//     }
-
 void solve()
 {
     int n; cin >> n;
