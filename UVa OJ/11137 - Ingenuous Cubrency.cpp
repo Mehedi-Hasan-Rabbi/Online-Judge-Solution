@@ -8,7 +8,7 @@ typedef long long ll;
 #define efficient()        ios_base::sync_with_stdio(0); cin.tie(0);
 /*---------------------------------------------------------------------------------------------------------------*/
 
-const int mx = 30000 + 5;
+const int mx = 10000 + 5;
 int coin[21];
 ll dp[23][mx]; // [number of coins][maximun number input]
 
