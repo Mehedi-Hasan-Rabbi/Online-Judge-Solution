@@ -26,93 +26,51 @@ const double PI = 3.14159265358979323846;
 const double eps = 1e-9; // if (abs(a-b) < 1e-9) {a and b are equal}
  
 /*---------------------------------------------------------------------------------------------------------------*/
- 
+
+void move (vector<int>& v, int val, int pos, int op, vector<pair<int, int>>& ans) {
+    int idx = find(v.begin(), v.end(), val) - v.begin();
+    
+    if (idx == pos) return;
+
+    while (idx > pos) {
+        swap (v[idx - 1], v[idx]);
+        ans.push_back({op, idx - 1});
+        idx--;
+    }
+}
+
 void solve()
 {
     int n; cin >> n;
     vector<int> a(n + 1, 0), b(n + 1, 0);
-    vector<bool> a_ok(n + 1, 0), b_ok(n + 1, 0);
-
-    vector<pair<int, int>> ans;
-
     for (int i = 1; i <= n; i++) cin >> a[i];
     for (int i = 1; i <= n; i++) cin >> b[i];
 
-    // First full complete array a with value form 1 to n
-    for (int i = n; i >= 1; i--) {
-        int right_val = i, right_idx = i;
+    vector<pair<int, int>> ans;
+    int up = 1, down = 2;
 
-        // If found in array a
-        int find_idx = find(a.begin(), a.end(), right_val) - a.begin();
-        if (find_idx <= n) {
-            int idx = find_idx;
-            if (find_idx < right_idx) {
-                while (idx < right_idx) {
-                    swap(a[idx], a[idx + 1]);
-                    ans.push_back({1, idx});
-                    idx++;
-                }
-            }
-            else if (find_idx > right_idx) {
-                while (right_idx < idx) {
-                    swap(a[idx - 1], a[idx]);
-                    ans.push_back({1, idx - 1});
-                    idx--;
-                }
-            }
+    for (int i = 1; i <= n; i++) {
+        // Put up in right position
+        int idx = find(b.begin(), b.end(), up) - b.begin();
+        if (idx <= n) {
+            swap(a[idx], b[idx]);
+            ans.push_back({3, idx});
         }
-        // else found in array b
-        else {
-            find_idx = find(b.begin(), b.end(), right_val) - b.begin();
-            int idx = find_idx;
-            if (find_idx < right_idx) {
-                while (idx < right_idx) {
-                    swap(b[idx], b[idx + 1]);
-                    ans.push_back({2, idx});
-                    idx++;
-                }
-                
-            }
-            else if (find_idx > right_idx) {
-                while (right_idx < idx) {
-                    swap(b[idx - 1], b[idx]);
-                    ans.push_back({2, idx - 1});
-                    idx--;
-                }
-            }
-            swap(a[right_idx], b[right_idx]);
-            ans.push_back({3, right_idx});
+        move (a, up, i, 1, ans);
+        up = up + 2;
+
+        // Put down in right position
+        idx = find(a.begin(), a.end(), down) - a.begin();
+        if (idx <= n) {
+            swap(a[idx], b[idx]);
+            ans.push_back({3, idx});
         }
-    }
-    
-    // Then complete array b with value n + 1 to 2 * n
-    int right_val = 2 * n, right_idx = n;
-    for (int i = n; i >= 1; i--) {
-        int find_idx = find(b.begin(), b.end(), right_val) - b.begin();
-        
-        int idx = find_idx;
-        if (find_idx < right_idx) {
-            while (idx < right_idx) {
-                swap(b[idx], b[idx + 1]);
-                ans.push_back({2, idx});
-                idx++;
-            }
-        }
-        else if (find_idx > right_idx) {
-            while (right_idx < idx) {
-                swap(b[idx - 1], b[idx]);
-                ans.push_back({2, idx - 1});
-                idx--;
-            }
-        }
-        
-        right_idx--, right_val--;
+        move (b, down, i, 2, ans);
+        down = down + 2;
     }
 
     cout << ans.size() << endl;
-    for (auto u: ans) {
-        cout << u.first << " " << u.second << endl;
-    }
+    for (auto u: ans) cout << u.first << " " << u.second << endl;
 }
  
 int main(void) {
