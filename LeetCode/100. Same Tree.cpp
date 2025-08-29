@@ -22,7 +22,7 @@ public:
     }
 
     // BFS Solution
-    bool isSameTree(TreeNode* p, TreeNode* q) {
+/*     bool isSameTree(TreeNode* p, TreeNode* q) {
         queue<TreeNode*> root_p;
         queue<TreeNode*> root_q;
 
@@ -46,5 +46,5 @@ public:
         }
 
         return root_p.empty() and root_q.empty();
-    }
+    } */
 };
